@@ -1,13 +1,31 @@
-import re
+from utils import *
 
-a = "Hello"
-re_rolls = r"(([0-9]*d[0-9]*[dk]*[0-9]*)([+-][0-9]*)?([+-]?[0-9]*d[0-9]*[dk]*[0-9]*)?)"
-re_numbers = r""
+re_rolls = r"([0-9]*d[0-9]*[dk]*[0-9]*)([+-][0-9]*)?([+-]?[0-9]*d[0-9]*[dk]*[0-9]*)?"
+re_dice = r"([+-])?([0-9]*)(d)([0-9]+)([dk])?([0-9]+)?"
+re_modifier = r"([-+][0-9]+)"
 
 def rolldice(dicestring):
-    rolls = list(re.findall(re_rolls, dicestring)[0])
-    rolls.pop(0)
 
-    splitrolls = list(re.findall(re_numbers),)
+    print(dicestring)
 
-    return rolls
+    try:
+        rolls = listfindall(re_rolls, dicestring)
+    except IndexError:
+        print("Incorrect Dice Format")
+        return False
+
+    roll_list = []
+
+    for roll in rolls:
+        try:
+            roll_list.append(listfindall(re_dice,roll))
+        except IndexError:
+            roll_list.append(listfindall(re_modifier, roll))
+
+    for roll in roll_list:
+        if 'd' in roll:
+            roller(roll)
+        else:
+            print("Modifier Roll")
+
+    return False
