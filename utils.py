@@ -1,5 +1,5 @@
-import re
-import random
+import re, random, heapq
+
 
 def errortest(name, desc):
     # Error Testing funciton
@@ -15,29 +15,34 @@ def listfindall(reg, text):
     return list(filter(None,re.findall(reg, text)[0]))
 
 def roller(roll):
-    errortest("number of dice to roll", roll[0])
-    errortest("number of sides on dice", roll[2])
     amount = int(roll[0])
     sides = int(roll[2])
-
-
-    rolltotal = 0
+    keep_drop = ""
+    keep_drop_amount = 0
+    rolls = []
+    all_rolls = []
 
     # checks to see if there is a keep or drop requirment
     if len(roll) > 3:
-        print("Has a keep or drop")
         try:
-            if roll[3] is "k":
-                errortest("Keep the highest",roll[4])
-            if roll[3] is "d":
-                errortest("Drop lowest", roll[4])
+            keep_drop = roll[3].lower()
+            keep_drop_amount= int(roll[4])
+
+            if keep_drop_amount > amount:
+                print("Keeping or dropping too many die")
+                return False
+
         except IndexError:
             print("No number after keep or drop")
             return False
 
     for num in range(amount):
-        rolltotal += random.randint(1, sides)
+        rolls.append(random.randint(1, sides))
+    if keep_drop == 'k':
+        all_rolls = heapq.nlargest(keep_drop_amount, rolls)
+    elif keep_drop == 'd':
+        all_rolls = heapq.nsmallest(keep_drop_amount, rolls)
+    else:
+        all_rolls = rolls
 
-    print(rolltotal)
-
-    return "Hello"
+    return sum(all_rolls)

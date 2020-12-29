@@ -5,6 +5,7 @@ re_dice = r"([+-])?([0-9]*)(d)([0-9]+)([dk])?([0-9]+)?"
 re_modifier = r"([-+][0-9]+)"
 
 def rolldice(dicestring):
+    total = 0
 
     print(dicestring)
 
@@ -24,8 +25,9 @@ def rolldice(dicestring):
 
     for roll in roll_list:
         if 'd' in roll:
-            roller(roll)
+            total = roller(roll)
         else:
             print("Modifier Roll")
 
-    return False
+    return total
+
