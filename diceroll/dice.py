@@ -5,7 +5,10 @@ re_dice = r"([+-])?([0-9]*)(d)([0-9]+)([dk])?([0-9]+)?"
 re_modifier = r"([-+][0-9]+)"
 
 def rolldice(dicestring):
-    total = 0
+    diceroll = {
+        'rolls': [],
+        'total': 0
+    }
 
     print(dicestring)
 
@@ -25,9 +28,17 @@ def rolldice(dicestring):
 
     for roll in roll_list:
         if 'd' in roll:
-            total = roller(roll)
+            if roll[0] ==  '-' or roll[0] == '+':
+                # for dice rolls after the first, to add or subtract
+                temp_roll = roller(roll[1:])
+                diceroll['rolls'].append(int(f'{roll[0]}{temp_roll}'))
+            else:# rolling first dice rolls
+                diceroll['rolls'].append(roller(roll))
         else:
-            print("Modifier Roll")
+            # rolls modifiers
+            diceroll['rolls'].append(int(''.join(roll)))
 
-    return total
+    diceroll['total'] = sum(diceroll['rolls'])
+
+    return diceroll
 
