@@ -42,3 +42,11 @@ def rolldice(dicestring):
 
 def statroller():
     return [roller("4d6k3") for i in range(6)]
+
+
+options = [
+    {'name': "Dice Roller",
+    'function': rolldice},
+    {'name': "Stats Roller",
+     'function': statroller}
+]
