@@ -3,10 +3,7 @@
 
 ## Currently working on
 
-- Dice roller main function
-    - Adding/subtracting modifiers
-    - Adding/subtracting addition dice rolls
-- Stat roller
+- Menu
 
 ## Planned features
 

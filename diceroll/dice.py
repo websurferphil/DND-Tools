@@ -9,16 +9,13 @@ def rolldice(dicestring):
         'rolls': [],
         'total': 0
     }
-
-    print(dicestring)
+    roll_list = []
 
     try:
         rolls = listfindall(re_rolls, dicestring)
     except IndexError:
         print("Incorrect Dice Format")
         return False
-
-    roll_list = []
 
     for roll in rolls:
         try:
@@ -42,3 +39,6 @@ def rolldice(dicestring):
 
     return diceroll
 
+
+def statroller():
+    return [roller("4d6k3") for i in range(6)]
