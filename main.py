@@ -1,30 +1,41 @@
-from pyfiglet import Figlet
-from consolemenu import *
-from consolemenu.items import *
+# Importing modules
 
-import config
+from blessed import Terminal
+import pyfiglet as f
+from config import Config
+from screen import MainScreen
+import py_cui
 
-dndconf = config.Config.MENU_OPTIONS
-
-f = Figlet(font="big")
-menu = ConsoleMenu(f.renderText('DND-Tools'), "Subtitle")
+# Importing the menu items
 
 import diceroll.dice as dice
+
+dndconf = Config.MENU_OPTIONS
+term = Terminal()
+
+
+
 dndconf["dice"] = {
     "name": "Dice Roller",
     "app": dice,
-    "options":dice.options
+    "options": dice.options
 }
 
 
 def main():
-    print(dice.rolldice("4d6k3+1-2d4"))
+    print(dice.rolldice("6d6k4+1-2d4+2d4-9d6"))
     print("-------")
     print(dice.statroller())
     print("\n\n\n\n Menu")
-    print(dndconf["dice"]["options"])
+    with term.location(0, term.height -1):
+        print('This is ' + term.green_on_yellow(term.underline('underlined')) + '!')
+        print(f"{term.link('https://github.com/websurferphil/DND-Tools', 'Github')}")
 
-
+    root = py_cui.PyCUI(7, 6)
+    root.toggle_unicode_borders()
+    root.set_title('CUI TODO List')
+    s = MainScreen(root)
+    root.start()
 
 
 if __name__ == "__main__":
