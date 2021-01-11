@@ -1,7 +1,6 @@
 # Importing modules
 
 from blessed import Terminal
-import pyfiglet as f
 from config import Config
 from screen import MainScreen
 import py_cui
@@ -12,7 +11,6 @@ import diceroll.dice as dice
 
 dndconf = Config.MENU_OPTIONS
 term = Terminal()
-
 
 
 dndconf["dice"] = {
@@ -27,15 +25,17 @@ def main():
     print("-------")
     print(dice.statroller())
     print("\n\n\n\n Menu")
-    with term.location(0, term.height -1):
+    with term.location(0, term.height - 1):
         print('This is ' + term.green_on_yellow(term.underline('underlined')) + '!')
         print(f"{term.link('https://github.com/websurferphil/DND-Tools', 'Github')}")
 
     root = py_cui.PyCUI(7, 6)
     root.toggle_unicode_borders()
-    root.set_title('CUI TODO List')
+    root.set_title('DND-Tools by WebSurferPhil')
     s = MainScreen(root)
     root.start()
+
+    s.add_menu_item(name=dndconf["dice"]["name"])
 
 
 if __name__ == "__main__":
