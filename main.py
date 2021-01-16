@@ -1,16 +1,20 @@
 # Importing modules
-
-from blessed import Terminal
 from config import Config
-from screen import MainScreen
-import py_cui
+
+import tkinter as tk
+from tkinter import ttk
 
 # Importing the menu items
 
 import diceroll.dice as dice
 
+# Set up
+
 dndconf = Config.MENU_OPTIONS
-term = Terminal()
+root = tk.Tk()
+root.title("DND-Tools by WebSurferPhil")
+root.minsize(800, 600)
+tab_ctrl = ttk.Notebook(root)
 
 
 dndconf["dice"] = {
@@ -20,22 +24,30 @@ dndconf["dice"] = {
 }
 
 
+class AppTab:
+    def __init__(self, app):
+        self.app_tab = ttk.Frame(tab_ctrl)
+        print(dndconf[app]["name"])
+        print("---")
+        tab_ctrl.add(self.app_tab, text=dndconf[app]["name"])
+        ttk.Label(self.app_tab, text=dndconf[app]["name"]).grid(column=0,
+                                                                row=0,
+                                                                padx=30,
+                                                                pady=30)
+
+
 def main():
+
+    for module in dndconf:
+        AppTab(app=module)
+
+    tab_ctrl.pack(expand=1, fill="both")
+
     print(dice.rolldice("6d6k4+1-2d4+2d4-9d6"))
     print("-------")
     print(dice.statroller())
     print("\n\n\n\n Menu")
-    with term.location(0, term.height - 1):
-        print('This is ' + term.green_on_yellow(term.underline('underlined')) + '!')
-        print(f"{term.link('https://github.com/websurferphil/DND-Tools', 'Github')}")
-
-    root = py_cui.PyCUI(7, 6)
-    root.toggle_unicode_borders()
-    root.set_title('DND-Tools by WebSurferPhil')
-    s = MainScreen(root)
-    root.start()
-
-    s.add_menu_item(name=dndconf["dice"]["name"])
+    root.mainloop()
 
 
 if __name__ == "__main__":
