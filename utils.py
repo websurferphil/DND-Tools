@@ -10,9 +10,31 @@ def errortest(name, desc):
     print("{:s}: {:s}".format(name, str(desc)))
     print("########################")
 
+
+def listrolls(reg, text, roll_list=None):
+    # Finds all rolls
+
+    # to help with recursion, checks to see if roll_list is None
+    if roll_list is None:
+        rolls = []
+    else:
+        rolls = roll_list
+
+    # Use recursion to go through the string and pull out
+    # the dice rolls and modifiers one by one
+    if text == "":
+        pass
+    else:
+        temp = list(re.findall(reg, text))[0]
+        rolls.append(temp[0])
+        listrolls(reg, temp[1], rolls)
+
+    return rolls
+
+
 def listfindall(reg, text):
-    # turns find all into a list
-    return list(filter(None,re.findall(reg, text)[0]))
+    # Turns text into a list after figuring out if it is a modifier or not
+    return list(filter(None, re.findall(reg, text)[0]))
 
 def roller(roll):
     amount = int(roll[0])
@@ -46,3 +68,11 @@ def roller(roll):
         all_rolls = rolls
 
     return sum(all_rolls)
+
+
+def conf(name, app, options):
+    return {
+        "name": name,
+        "app": app,
+        "options": options
+    }
