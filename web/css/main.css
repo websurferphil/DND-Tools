@@ -1,12 +1,51 @@
-/* line 5, ../programming/DND-Tool/web/scss/main.scss */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  background-color: #9C9794; }
+  background-color: #faeafa;
+}
 
-/* line 9, ../programming/DND-Tool/web/scss/main.scss */
-h1 {
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 8vh;
+  background-color: #9C9794;
+  font-family: "Assistant", sans-serif;
+}
+
+nav .logo {
+  background-color: #9C9794;
+  font-family: "Baloo 2", cursive;
+  font-size: 1.75em;
+  letter-spacing: 1px;
+  max-width: 35%;
+  margin: 5px;
+  color: #e6e6e6;
+}
+
+nav .nav-links {
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.5em;
+  min-width: 60%;
+  list-style: none;
+}
+
+nav .nav-links a {
+  text-decoration: none;
   color: #254617;
-  text-align: center;
-  font-size: 4em;
-  font-family: 'Baloo 2', cursive; }
+  text-shadow: 1px 1px 3px rgba(31, 31, 31, 0.7);
+  -webkit-transition: color 0.3s ease, text-shadow 0.3s ease;
+  -moz-transition: color 0.3s ease, text-shadow 0.3s ease;
+  -o-transition: color 0.3s ease, text-shadow 0.3s ease;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
 
-/*# sourceMappingURL=main.css.map */
+nav .nav-links a:hover {
+  color: #396c24;
+  text-shadow: 2px 2px 3px rgba(31, 31, 31, 0.5);
+}

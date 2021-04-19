@@ -1,14 +1,55 @@
 $main-color: #254617;
 $background-color: #9C9794;
-$secondary-color: #4F4E4F;
+$secondary-color: #1f1f1f;
+$main-font: 'Assistant', sans-serif;
+$header-font: 'Baloo 2', cursive;
 
-body {
-    background-color: $background-color;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-h1{
-    color: $main-color;
-    text-align: center;
-    font-size: 4em;
-    font-family: 'Baloo 2', cursive;
+body{
+    background-color: #faeafa;
+}
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 8vh;
+    background-color: $background-color;
+    font-family: $main-font;
+    
+    .logo {
+        background-color: $background-color;
+        font-family: $header-font;
+        font-size: 1.75em;
+        letter-spacing: 1px;
+        max-width: 35%;
+        margin: 5px;
+        color: #e6e6e6;
+    }    
+
+    .nav-links {
+        display: flex;
+        justify-content: space-around;
+        font-size: 1.5em;
+        min-width: 60%;
+        list-style: none;
+        a {
+            text-decoration: none;
+            color: $main-color;
+            text-shadow: 1px 1px 3px transparentize($color: $secondary-color, $amount: 0.3);
+            -webkit-transition: color 0.3s ease, text-shadow 0.3s ease;
+               -moz-transition: color 0.3s ease, text-shadow 0.3s ease;
+                 -o-transition: color 0.3s ease, text-shadow 0.3s ease;
+                    transition: color 0.3s ease, text-shadow 0.3s ease;
+
+            &:hover {
+                color: lighten($color: $main-color, $amount: 10%);
+                text-shadow: 2px 2px 3px transparentize($color: $secondary-color, $amount: 0.5);
+            }
+        }
+    }
 }
