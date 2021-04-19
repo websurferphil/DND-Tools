@@ -1,0 +1,14 @@
+$main-color: #254617;
+$background-color: #9C9794;
+$secondary-color: #4F4E4F;
+
+body {
+    background-color: $background-color;
+}
+
+h1{
+    color: $main-color;
+    text-align: center;
+    font-size: 4em;
+    font-family: 'Baloo 2', cursive;
+}

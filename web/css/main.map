@@ -1,0 +1,12 @@
+{
+	"version": 3,
+	"file": "main.css",
+	"sources": [
+		"../scss/main.scss"
+	],
+	"sourcesContent": [
+		"$main-color: #254617;\r\n$background-color: #9C9794;\r\n$secondary-color: #4F4E4F;\r\n\r\nbody {\r\n    background-color: $background-color;\r\n}\r\n\r\nh1{\r\n    color: $main-color;\r\n    text-align: center;\r\n    font-size: 4em;\r\n    font-family: 'Baloo 2', cursive;\r\n}"
+	],
+	"names": [],
+	"mappings": ";AAIA,AAAA,IAAI,CAAC;EACD,gBAAgB,EAJD,OAAO,GAKzB;;;AAED,AAAA,EAAE,CAAA;EACE,KAAK,EATI,OAAO;EAUhB,UAAU,EAAE,MAAM;EAClB,SAAS,EAAE,GAAG;EACd,WAAW,EAAE,kBAAkB,GAClC"
+}
